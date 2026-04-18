@@ -1,7 +1,11 @@
 import axios from 'axios';
 
+const BASE_URL = import.meta.env.VITE_API_URL
+  ? `${import.meta.env.VITE_API_URL}/api`
+  : '/api'; // falls back to Vite dev-proxy in local development
+
 const api = axios.create({
-  baseURL: '/api',
+  baseURL: BASE_URL,
 });
 
 // Attach JWT token to every request

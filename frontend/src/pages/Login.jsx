@@ -29,7 +29,8 @@ export default function Login() {
       localStorage.setItem('admin', JSON.stringify(data.admin));
       navigate('/dashboard');
     } catch (err) {
-      setError(err.response?.data?.error || 'Login failed. Please try again.');
+      const raw = err.response?.data?.error;
+      setError(typeof raw === 'string' ? raw : raw?.message || 'Login failed. Please try again.');
     } finally {
       setLoading(false);
     }

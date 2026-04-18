@@ -71,7 +71,8 @@ export default function TaskForm({ task, students, onSaved, onCancel }) {
         onSaved(data, false);
       }
     } catch (err) {
-      setApiError(err.response?.data?.error || 'Something went wrong.');
+      const raw = err.response?.data?.error;
+      setApiError(typeof raw === 'string' ? raw : raw?.message || 'Something went wrong.');
     } finally {
       setLoading(false);
     }
